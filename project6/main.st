@@ -229,7 +229,7 @@ Each condition shall be entered in one line and of the following format:
             minArea := shapes first area.
             minVolume := shapes first volume.
 
-            shapes do: [ :shape | 
+            shapes do: [ :shape |
                 (shape area < minArea) ifTrue: [ minArea := shape area ].
                 (shape volume < minVolume) ifTrue: [ minVolume := shape volume ].
             ].
@@ -280,7 +280,7 @@ Each condition shall be entered in one line and of the following format:
             maxArea := shapes first area.
             maxVolume := shapes first volume.
 
-            shapes do: [ :shape | 
+            shapes do: [ :shape |
                 (shape area > maxArea) ifTrue: [ maxArea := shape area ].
                 (shape volume > maxVolume) ifTrue: [ maxVolume := shape volume ].
             ].
@@ -331,7 +331,7 @@ Each condition shall be entered in one line and of the following format:
             totalArea := 0.0.
             totalVolume := 0.0.
 
-            shapes do: [ :shape | 
+            shapes do: [ :shape |
                 totalArea := totalArea + shape area.
                 totalVolume := totalVolume + shape volume.
             ].
@@ -362,8 +362,8 @@ Each condition shall be entered in one line and of the following format:
                 ].
             ].
 
-            Transcript show: 'max(Surface Area)=', totalArea fixDec; nl.
-            Transcript show: 'max(Volume)=', totalVolume fixDec; nl.
+            Transcript show: 'total(Surface Area)=', totalArea fixDec; nl.
+            Transcript show: 'total(Volume)=', totalVolume fixDec; nl.
         ].
 
         validCommand := true.
@@ -375,7 +375,7 @@ Each condition shall be entered in one line and of the following format:
             avgArea := 0.0.
             avgVolume := 0.0.
 
-            shapes do: [ :shape | 
+            shapes do: [ :shape |
                 avgArea := avgArea + shape area.
                 avgVolume := avgVolume + shape volume.
             ].
@@ -409,8 +409,8 @@ Each condition shall be entered in one line and of the following format:
             ].
 
             (count ~= 0) ifTrue: [
-                Transcript show: 'max(Surface Area)=', (totalArea / count) fixDec; nl.
-                Transcript show: 'max(Volume)=', (totalVolume / count) fixDec; nl.
+                Transcript show: 'avg(Surface Area)=', (totalArea / count) fixDec; nl.
+                Transcript show: 'avg(Volume)=', (totalVolume / count) fixDec; nl.
             ].
         ].
 
@@ -424,4 +424,4 @@ Valid actions: print count min max total avg
 Enter help for help'; nl.
 
     ].
-]. 
+].
