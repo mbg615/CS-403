@@ -1,0 +1,18 @@
+(define (torus-area big-radius small-radius)
+    (* (* 2 pi big-radius)
+        (* 2 pi small-radius)))
+
+(define (torus-volume big-radius small-radius)
+    (* (* pi (expt small-radius 2))
+        (* 2 pi big-radius)))
+
+(define (torus-info name big-radius small-radius)
+    (let ((area (torus-area big-radius small-radius))
+        (volume (torus-volume big-radius small-radius)))
+    (display "Torus: ") (display name)
+    (display ", Small Radius=") (display (exact->inexact small-radius))
+    (display ", Big Radius=") (display (exact->inexact big-radius))
+    (newline)
+    (display "  Surface Area: ") (display (exact->inexact area))
+    (display ", Volume: ") (display (exact->inexact volume))
+    (newline)))

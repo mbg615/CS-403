@@ -1,0 +1,15 @@
+(define (sphere-area radius)
+    (* 4 pi (expt radius 2)))
+
+(define (sphere-volume radius)
+    (* (/ 4 3.0) pi (expt radius 2)))
+
+(define (sphere-info name radius)
+    (let ((area (sphere-area radius))
+        (volume (sphere-volume radius)))
+    (display "Sphere: ") (display name)
+    (display ", Radius=") (display (exact->inexact radius))
+    (newline)
+    (display "  Surface Area: ") (display (exact->inexact area))
+    (display ", Volume: ") (display (exact->inexact volume))
+    (newline)))
