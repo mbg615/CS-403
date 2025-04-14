@@ -3,53 +3,205 @@
 (load "cylinder.scm")
 (load "torus.scm")
 
+(define pi 3.14159265358979323846)
 (define shapes '())
+(define global_count 0)
+(define global_total 0)
 
 (define (perform action filename . conditions)
-    (define (process-shapes shapes-list) ; local parameter lol
+    (define (process-shapes shapes-list)
       (for-each
         (lambda (current-shape)
-          (display "Processing sublist: ")
-          (display current-shape)
-          (newline))
+            (let ((shape-type (car (cdr current-shape))))
+                (cond
+                    ((string=? shape-type "box")
+                        (begin
+                            (cond
+                                ((string=? action "count")
+                                    (begin
+                                        (if (null? conditions) (set! global_count (+ global_count 1))
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "print")
+                                    (begin
+                                        (if (null? conditions) (box-info current-shape)
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "min")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "max")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "total")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "avg")
+                                    (begin
+
+
+                                    ))
+                            )
+                        ))
+                    ((string=? shape-type "sphere")
+                        (begin
+                            (cond
+                                ((string=? action "count")
+                                    (begin
+                                        (if (null? conditions) (set! global_count (+ global_count 1))
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "print")
+                                    (begin
+                                        (if (null? conditions) (sphere-info current-shape)
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "min")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "max")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "total")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "avg")
+                                    (begin
+
+
+                                    ))
+                            )
+                        ))
+                    ((string=? shape-type "cylinder")
+                        (begin
+                            (cond
+                                ((string=? action "count")
+                                    (begin
+                                        (if (null? conditions) (set! global_count (+ global_count 1))
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "print")
+                                    (begin
+                                        (if (null? conditions) (cylinder-info current-shape)
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "min")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "max")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "total")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "avg")
+                                    (begin
+
+
+                                    ))
+                            )
+                        ))
+                    ((string=? shape-type "torus")
+                        (begin
+                            (cond
+                                ((string=? action "count")
+                                    (begin
+                                        (if (null? conditions) (set! global_count (+ global_count 1))
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "print")
+                                    (begin
+                                        (if (null? conditions) (torus-info current-shape)
+                                            (begin
+
+                                            ))
+                                    ))
+                                ((string=? action "min")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "max")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "total")
+                                    (begin
+
+
+                                    ))
+                                ((string=? action "avg")
+                                    (begin
+
+
+                                    ))
+                            )
+                        )))))
         shapes-list))
 
     (if (not (file-exists? filename))
-        ( begin
-            (display "Unable to open ") (display filename) (display " for reading.") (newline))
-        ( begin
-            (if (null? shapes)
-                ( begin
-                    (make-shapes filename))
-                ( begin
-                    (display "Shapes not null")))
+        (begin
+            (display "Unable to open ") (display filename) (display " for reading.") (newline) (newline))
+        (begin
+            (if (null? shapes) (make-shapes filename) ())
 
         (if (eq? (remainder (length conditions) 3) 0)
-            ( begin
+            (begin
                 ; If the number of conditions is valid
-
                 (newline)
+                (set! global_count 0)
+                (set! global_total 0)
                 (process-shapes shapes)
+                (cond
+                    ((string=? action "count")
+                        (begin
+                            (display "There are ") (display global_count) (display " shapes.") (newline)
+                        ))
+
+
+                    )
+
+
                 (newline)
 
-
-                (display "Conditions: ") (display (length conditions)) (newline)
-
-                ; (newline)
-                ; (let ((myShape (car shapes)))
-                ;     (display (car myShape)))
-                ; (newline)
-                ; (let ((myShape (car (cdr shapes))))
-                ;     (display (car myShape)))
-                ; (newline)
-                ; (let ((myShape (car (cdr (cdr shapes)))))
-                ;     (display (car myShape)))
-                ;;; Further logic here
 
 
                 )
-            ( begin
-            (display "Incorrect number of arguments.") (newline))))))
+            (begin
+                (display "Incorrect number of arguments.") (newline))))))
 
 (define (make-shapes name)
     (let ((port (open-input-file name)))

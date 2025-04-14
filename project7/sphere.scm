@@ -1,10 +1,15 @@
+(define (sphere-info sphere)
+    (sphere-info-helper
+        (car sphere)
+        (string->number (string-trim (caddr sphere) char-set:numeric))))
+
 (define (sphere-area radius)
     (* 4 pi (expt radius 2)))
 
 (define (sphere-volume radius)
     (* (/ 4 3.0) pi (expt radius 2)))
 
-(define (sphere-info name radius)
+(define (sphere-info-helper name radius)
     (let ((area (sphere-area radius))
         (volume (sphere-volume radius)))
     (display "Sphere: ") (display name)

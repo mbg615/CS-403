@@ -1,3 +1,9 @@
+(define (torus-info torus)
+    (torus-info-helper
+        (car torus)
+        (string->number (caddr torus))
+        (string->number (string-trim (cadddr torus) char-set:numeric))))
+
 (define (torus-area big-radius small-radius)
     (* (* 2 pi big-radius)
         (* 2 pi small-radius)))
@@ -6,7 +12,7 @@
     (* (* pi (expt small-radius 2))
         (* 2 pi big-radius)))
 
-(define (torus-info name big-radius small-radius)
+(define (torus-info-helper name big-radius small-radius)
     (let ((area (torus-area big-radius small-radius))
         (volume (torus-volume big-radius small-radius)))
     (display "Torus: ") (display name)

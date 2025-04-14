@@ -1,3 +1,10 @@
+(define (box-info box)
+    (box-info-helper
+        (car box)
+        (string->number (caddr box))
+        (string->number (cadddr box))
+        (string->number (string-trim (car (cddddr box)) char-set:numeric))))
+
 (define (box-area length width height)
     (* 2 (+ (* width length)
            (* height length)
@@ -16,7 +23,7 @@
             #f
             (box-test (cdddr cond-list) area volume)))))
 
-(define (box-info name length width height)
+(define (box-info-helper name length width height)
     (let ((area (box-area length width height))
         (volume (box-volume length width height)))
     (display "Box: ") (display name)
