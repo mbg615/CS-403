@@ -5,12 +5,24 @@
         (string->number (cadddr box))
         (string->number (string-trim (car (cddddr box)) char-set:numeric))))
 
-(define (box-area length width height)
+(define (box-area box)
+  (let ((l (string->number (caddr box)))
+        (w (string->number (cadddr box)))
+        (h (string->number (string-trim (car (cddddr box)) char-set:numeric))))
+    (box-area-helper l w h)))
+
+(define (box-volume box)
+  (let ((l (string->number (caddr box)))
+        (w (string->number (cadddr box)))
+        (h (string->number (string-trim (car (cddddr box)) char-set:numeric))))
+    (box-volume-helper l w h)))
+
+(define (box-area-helper length width height)
     (* 2 (+ (* width length)
            (* height length)
            (* height width))))
 
-(define (box-volume length width height)
+(define (box-volume-helper length width height)
     (* length width height))
 
 (define (box-test cond-list area volume)
@@ -24,8 +36,8 @@
             (box-test (cdddr cond-list) area volume)))))
 
 (define (box-info-helper name length width height)
-    (let ((area (box-area length width height))
-        (volume (box-volume length width height)))
+    (let ((area (box-area-helper length width height))
+        (volume (box-volume-helper length width height)))
     (display "Box: ") (display name)
     (display ", Length=") (display (exact->inexact length))
     (display ", Width=") (display (exact->inexact width))

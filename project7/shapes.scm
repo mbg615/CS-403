@@ -5,8 +5,14 @@
 
 (define pi 3.14159265358979323846)
 (define shapes '())
+
 (define global_count 0)
 (define global_total 0)
+
+(define globals_set? 0)
+(define global_area_store 0)
+(define global_volume_store 0)
+
 
 (define (perform action filename . conditions)
     (define (process-shapes shapes-list)
@@ -22,6 +28,8 @@
                                         (if (null? conditions) (set! global_count (+ global_count 1))
                                             (begin
 
+                                                ; Condition
+
                                             ))
                                     ))
                                 ((string=? action "print")
@@ -29,26 +37,92 @@
                                         (if (null? conditions) (box-info current-shape)
                                             (begin
 
+
+                                                ; Condition checking for print
+
+
                                             ))
                                     ))
                                 ((string=? action "min")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                (if (eq? globals_set? 0)
+                                                    (begin
+                                                        (set! globals_set? 1)
+                                                        (set! global_area_store (box-area current-shape))
+                                                        (set! global_volume_store (box-volume current-shape)))())
 
+                                                (if (< (box-area current-shape) global_area_store) (set! global_area_store (box-area current-shape)) ())
+                                                (if (< (box-volume current-shape) global_volume_store) (set! global_volume_store (box-volume current-shape)) ()))
+                                            (begin
+
+
+                                                ; Condition checking for min
+
+
+                                            ))
 
                                     ))
                                 ((string=? action "max")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                (if (eq? globals_set? 0)
+                                                    (begin
+                                                        (set! globals_set? 1)
+                                                        (set! global_area_store (box-area current-shape))
+                                                        (set! global_volume_store (box-volume current-shape)))())
 
+                                                (if (> (box-area current-shape) global_area_store) (set! global_area_store (box-area current-shape)) ())
+                                                (if (> (box-volume current-shape) global_volume_store) (set! global_volume_store (box-volume current-shape)) ()))
+                                            (begin
+
+
+                                                ; Condition checking for max
+
+
+                                            ))
 
                                     ))
                                 ((string=? action "total")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                (if (eq? globals_set? 0)
+                                                    (begin
+                                                        (set! globals_set? 1)
+                                                        (set! global_area_store 0)
+                                                        (set! global_volume_store 0))())
 
+                                                (if (> (box-area current-shape) global_area_store) (set! global_area_store (box-area current-shape)) ())
+                                                (if (> (box-volume current-shape) global_volume_store) (set! global_volume_store (box-volume current-shape)) ())
+
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "avg")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                (if (eq? globals_set? 0)
+                                                    (begin
+                                                        (set! global_count 0)
+                                                        (set! globals_set? 1)
+                                                        (set! global_area_store (box-area current-shape))
+                                                        (set! global_volume_store (box-volume current-shape)))())
 
+                                                (set! global_count (+ global_count 1))
+                                                (set! global_area_store (+ global_area_store (box-area current-shape)))
+                                                (set! global_volume_store (+ global_volume_store (box-volume current-shape))))
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                             )
@@ -72,22 +146,54 @@
                                     ))
                                 ((string=? action "min")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "max")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "total")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "avg")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                             )
@@ -111,22 +217,54 @@
                                     ))
                                 ((string=? action "min")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "max")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "total")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "avg")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                             )
@@ -150,22 +288,54 @@
                                     ))
                                 ((string=? action "min")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "max")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "total")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                                 ((string=? action "avg")
                                     (begin
+                                        (if (null? conditions)
+                                            (begin
+                                                ; No conditions
 
+                                            )
+                                            (begin
+                                                ; Conditions
+
+                                            ))
 
                                     ))
                             )
@@ -184,12 +354,36 @@
                 (newline)
                 (set! global_count 0)
                 (set! global_total 0)
+                (set! globals_set? 0)
                 (process-shapes shapes)
                 (cond
                     ((string=? action "count")
                         (begin
-                            (display "There are ") (display global_count) (display " shapes.") (newline)
-                        ))
+                            (display "There are ") (display global_count) (display " shapes.") (newline)))
+                    ((string=? action "min")
+                        (begin
+                            (display "min(Surface Area)=") (display (exact->inexact global_area_store)) (newline)
+                            (display "min(Volume)=") (display (exact->inexact global_volume_store)) (newline)))
+                    ((string=? action "max")
+                        (begin
+                            (display "max(Surface Area)=") (display (exact->inexact global_area_store)) (newline)
+                            (display "max(Volume)=") (display (exact->inexact global_volume_store)) (newline)))
+                    ((string=? action "avg")
+                        (begin
+                            (display "avg(Surface Area)=") (display (exact->inexact (/ global_area_store global_count))) (newline)
+                            (display "avg(Volume)=") (display (exact->inexact (/ global_volume_store global_count))) (newline)
+
+
+
+                            ))
+
+
+
+
+
+
+
+
 
 
                     )
