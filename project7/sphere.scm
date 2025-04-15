@@ -1,7 +1,18 @@
 (define (sphere-info sphere)
-    (sphere-info-helper
-        (car sphere)
-        (string->number (string-trim (caddr sphere) char-set:numeric))))
+    (let (
+        (name (car sphere))
+        (radius (clean-number (caddr sphere))))
+        (sphere-info-helper name radius)))
+
+(define (sphere-area sphere)
+    (let (
+        (radius (clean-number (caddr sphere))))
+        (sphere-area-helper radius)))
+
+(define (sphere-volume sphere)
+    (let (
+        (radius (clean-number (caddr sphere))))
+        (sphere-volume-helper radius)))
 
 (define (sphere-area-helper radius)
     (* 4 pi (expt radius 2)))
@@ -21,8 +32,8 @@
     (let ((area (sphere-area-helper radius))
         (volume (sphere-volume-helper radius)))
     (display "Sphere: ") (display name)
-    (display ", Radius=") (display (exact->inexact radius))
+    (display ", Radius=") (display (rounded radius))
     (newline)
-    (display "  Surface Area: ") (display (exact->inexact area))
-    (display ", Volume: ") (display (exact->inexact volume))
+    (display "  Surface Area: ") (display (rounded area))
+    (display ", Volume: ") (display (rounded volume))
     (newline)))

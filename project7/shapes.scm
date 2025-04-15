@@ -1,3 +1,4 @@
+(load "functions.scm")
 (load "box.scm")
 (load "sphere.scm")
 (load "cylinder.scm")
