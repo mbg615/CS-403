@@ -22,8 +22,7 @@
         (* 2 pi small-radius)))
 
 (define (torus-volume-helper big-radius small-radius)
-    (* (* pi (expt big-radius 2))
-        (* 2 pi small-radius)))
+    (* 2 (expt pi 2) big-radius (expt small-radius 2)))
 
 (define (torus-info-helper name big-radius small-radius)
     (let ((area (torus-area-helper big-radius small-radius))

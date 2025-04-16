@@ -18,38 +18,41 @@
 
             (if (eq? (remainder (length conditions) 3) 0)
                 (begin
-                    (display "Correct number of arguments.") (newline) (newline)
-                    ; Valid amout of arguments
-                    ;
-                    ; (get-avg)
-                    (get-print)
+                    (if (null? conditions)
+                        (begin
+                            ; No conditions
+                            (cond
+                                ((string=? action "min")(get-min-unconditional))
+                                ((string=? action "max")(get-max-unconditional))
+                                ((string=? action "avg")(get-avg-unconditional))
+                                ((string=? action "total")(get-total-unconditional))
+                                ((string=? action "count")(get-count-unconditional))
+                                ((string=? action "print")(get-print-unconditional))))
+                        (begin
+                            ; Conditions
+
+
+                            ))
 
                     (for-each
                         (lambda (shape)
                             (newline)
-                            ; (display "Shape: ")
-                            ; (display (car shape))
-                            ; (newline)
-                            ; (get-max)
-                            ; (get-avg)
-                            ; (print-shape shape)
+
+
                         )
                         shapes)
 
-
                 )
                 (begin
-                    (display "Incorrect number of arguments.") (newline) (newline)))
-
-            )))
+                    (display "Incorrect number of arguments.") (newline) (newline))))))
 
 (define (get-min-unconditional)
-    (display "min(Surface Area)=") (display (rounded (apply min (map area-shape shapes)))) (newline)
-    (display "min(Volume)=") (display (rounded (apply min (map volume-shape shapes)))) (newline))
+    (display "min(Surface Area)=") (display (rounded (apply min (map get-area shapes)))) (newline)
+    (display "min(Volume)=") (display (rounded (apply min (map get-volume shapes)))) (newline))
 
 (define (get-max-unconditional)
-    (display "max(Surface Area)=") (display (rounded (apply max (map area-shape shapes)))) (newline)
-    (display "max(Volume)=") (display (rounded (apply max (map volume-shape shapes)))) (newline))
+    (display "max(Surface Area)=") (display (rounded (apply max (map get-area shapes)))) (newline)
+    (display "max(Volume)=") (display (rounded (apply max (map get-volume shapes)))) (newline))
 
 (define (get-avg-unconditional)
     (display "avg(Surface Area)=") (display (rounded (avg-area-unconditional))) (newline)
@@ -60,19 +63,7 @@
     (display "total(Volume)=") (display (rounded (total-volume-unconditional))) (newline))
 
 (define (get-count-unconditional)
-    (display (length shapes)))
+    (display "There are ") (display (length shapes)) (display " shapes.") (newline))
 
-(define (get-print)
+(define (get-print-unconditional)
     (map print-shape shapes) (newline))
-
-(define (avg-area-unconditional)
-    (/ (apply + (map area-shape shapes)) (length shapes)))
-
-(define (avg-volume-unconditional)
-    (/ (apply + (map volume-shape shapes)) (length shapes)))
-
-(define (total-area-unconditional)
-    (apply + (map area-shape shapes)))
-
-(define (total-volume-unconditional)
-    (apply + (map volume-shape shapes)))

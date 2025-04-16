@@ -26,7 +26,7 @@
         (sphere-volume-helper radius)))
 
 (define (sphere-volume-helper radius)
-    (* (/ 4 3.0) pi (expt radius 2)))
+    (* (/ 4 3.0) pi (expt radius 3)))
 
 (define (sphere-info-helper name radius)
     (let ((area (sphere-area-helper radius))

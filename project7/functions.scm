@@ -48,16 +48,28 @@
         ((string=? (cadr shape) "sphere") (sphere-info shape))
         ((string=? (cadr shape) "cylinder") (cylinder-info shape))))
 
-(define (area-shape shape)
+(define (get-area shape)
     (cond
         ((string=? (cadr shape) "torus") (torus-area shape))
         ((string=? (cadr shape) "box") (box-area shape))
         ((string=? (cadr shape) "sphere") (sphere-area shape))
         ((string=? (cadr shape) "cylinder") (cylinder-area shape))))
 
-(define (volume-shape shape)
+(define (get-volume shape)
     (cond
         ((string=? (cadr shape) "torus") (torus-volume shape))
         ((string=? (cadr shape) "box") (box-volume shape))
         ((string=? (cadr shape) "sphere") (sphere-volume shape))
         ((string=? (cadr shape) "cylinder") (cylinder-volume shape))))
+
+(define (avg-area-unconditional)
+    (/ (apply + (map get-area shapes)) (length shapes)))
+
+(define (avg-volume-unconditional)
+    (/ (apply + (map get-volume shapes)) (length shapes)))
+
+(define (total-area-unconditional)
+    (apply + (map get-area shapes)))
+
+(define (total-volume-unconditional)
+    (apply + (map get-volume shapes)))
