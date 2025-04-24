@@ -359,8 +359,8 @@
 
 (define (get-total-conditional)
     (let ((shapes-list (filter (lambda (s) (meets-all? s)) shapes)))
-        (display "total(Surface Area)=") (display (rounded (apply + (map get-area shapes-list)) (length shapes-list))) (newline)
-        (display "total(Volume)=") (display (rounded (apply + (map get-volume shapes-list)) (length shapes-list))) (newline)))
+        (display "total(Surface Area)=") (display (rounded (apply + (map get-area shapes-list)))) (newline)
+        (display "total(Volume)=") (display (rounded (apply + (map get-volume shapes-list)))) (newline)))
 
 (define (get-count-conditional)
     (let ((shapes-list (filter (lambda (s) (meets-all? s)) shapes)))
