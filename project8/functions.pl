@@ -41,4 +41,4 @@ resolve_op('>=', >=).
 resolve_op('<', <).
 resolve_op('>', >).
 resolve_op('==', =:=).
-resolve_op('\\=', =\=).
+resolve_op('!=', =\=).
